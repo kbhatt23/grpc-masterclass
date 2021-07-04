@@ -1,0 +1,38 @@
+grpc comes in handy to help in complezities of microservices
+in microservices one application calls another and these services can be written in different programming languages
+challenges while creating api for inter service communication:
+a. data format: should we go for json.xml or binary
+b. endpoint url pattern: sometimes can be very complex
+c. error handling
+d. integration code based on programming language used in client service
+e. load balancing/auhentication/monitoring/metric
+f. inter service netwrok issues like latency
+
+all these issues can be handled by grpc:
+- we can ignore the data format as from client it looks like we are calling a method and passing request object directly
+- endpoint url wont exist as we are calling the method directly ->funcition as a service
+- error handling support exist in grpc
+- RPC call happens so no need to write client code, automatically based on your programming language client code will be generated
+- cross cutting concern support in grpc using interceptors
+- http2 and protbuff support
+
+- grpc is future of microservices
+
+-- issues with json:
+a. the body is plain text and hence takes lot of space, protobuff is in binary hence takes lot less sapce and easy to passs on network
+b. the json is plain text , easy for humans to read but will take more time and cpu effort to convert that to object in deserialization process
+c. the headers can not be compressed
+ in short the space of prot file is lesser for netwrok, and also it takes less timeand effort in deserialization as that is in bits
+ + it is more secured
+
+- http2 enables ssl by default unlike http1 where we need to work a lot to make http1 as secured
+  hence grpc is ssl enabled by default as it runs on http2
+- http2 also allow streaming support unlike http1  for both server and client -> this helsp in backpressure support for both client and server
+
+- http2 enables ssl by default ,hence in grpc for disabling it for local dev process we can call method -> usePlainText as true
+- http2 allow streaming and server to client push support and hence grpc have client streaming, server streaming and bidirectional streaming
+  push, pull from both ways
+  
+- grpc have fixed set of error/status codes which are clear
+-  grpc provides deadlines in case client needs to time out if the response is not serverd within the time range provided 
+   in case server also find that deadline is exceeded then server ignores the half done work, also client ignore this and throw deadline exceeded excpetion

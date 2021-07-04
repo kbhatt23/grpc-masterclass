@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_package = "com.learning.protobuff_basics.beans";
+
+message EvolvableMessage{
+	//never change tag of currently running property 
+	int32 id = 1;
+	
+	string first_name = 2;
+	
+	string last_name = 3;
+	
+	//a new field should always have a new tag
+	
+	//string middle_name = 4;
+	
+	//for removal we must discard the tag and field name for future purpose
+	reserved "middle_name";
+	reserved 4;
+	
+}

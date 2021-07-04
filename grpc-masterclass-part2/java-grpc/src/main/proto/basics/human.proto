@@ -1,0 +1,12 @@
+//syntax = "proto3";
+
+//package basics;
+
+//option java_package="com.learning.java_grpc.basics";
+
+//option java_multiple_files=true;
+
+//message Human{
+	//string first_name=1;
+	//string last_name=2;
+//}

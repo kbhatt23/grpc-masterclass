@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.aggregator_service.models";
+
+message UserGenreMessageRequest{
+	int32 user_id = 1;
+}
+
+message UserGenreMessageResponse{
+	int32 user_id = 1;
+	string favourite_genre = 2;
+}
+
+service UserGenreService{
+	rpc favouriteGenre(UserGenreMessageRequest) returns (UserGenreMessageResponse);
+	
+	}

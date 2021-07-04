@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.java_protobuff.beans";
+
+// version 1- > old version
+message Television{
+//if we remove any field we must reserve the field name and its tag id
+//so that in future there is no way in deserialzation wrong data is mapped
+	string brand = 1;
+	double age = 2;
+	int32 year = 3;
+}
+
+//version 2 present in server but data sent by client is old
+//message Television{
+	//string brand = 1;
+	//double price =2;
+	//TeleCategory teleCategory = 3;
+//}
+
+enum TeleCategory{
+
+	UNKNOWN = 0;
+	HD = 1;
+	LCD = 2;
+	LED = 3;
+}

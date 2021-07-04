@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+//option java_multiple_files = true;
+
+option java_package = "com.learning.protobuff_basics.beans";
+
+option java_multiple_files = true;
+
+message TestMiltipleFileClass1{
+
+	int32 id=1;
+}
+
+message TestMiltipleFileClass2{
+
+	int32 id=1;
+}
+
+message TestMiltipleFileClass3{
+
+	int32 id=1;
+}
+
+message TestMiltipleFileClass4{
+
+	int32 id=1;
+}

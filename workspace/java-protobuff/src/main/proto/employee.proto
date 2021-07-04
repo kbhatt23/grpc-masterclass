@@ -1,0 +1,19 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+import "utils/car.proto";
+import "utils/address.proto";
+
+option java_package = "com.learning.java_protobuff.beans";
+
+
+message Employee{
+	string name = 1;
+	int32 age=2;
+	double salary=3;
+	utils.Address address=4;
+	repeated utils.Car car = 5;
+	map<int32,utils.Car> dealers = 6;
+}

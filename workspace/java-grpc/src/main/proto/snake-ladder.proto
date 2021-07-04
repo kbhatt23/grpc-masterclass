@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.java_grpc.snakeladder";
+
+//import "utils/snake-dashboard.proto";
+
+
+//register users should be unary
+//for each user let it register and send single response back
+message RegisterUserRequest{
+	string name = 1;
+}
+
+message RegisterUserResponse{
+	string name = 1;
+	string user_id = 2;
+}
+
+message SnakeLadderRequest{
+	string name = 1;
+}
+
+message SnakeLadderDashBoard{
+	string name = 1;
+	int32 position = 2;
+}
+
+message SnakeLadderResponse{
+	repeated SnakeLadderDashBoard dashboard = 1;
+	bool isCompleted = 2;
+	bool isValidUser = 3;
+}
+
+service SnakeLadderService {
+
+	rpc registerUser(RegisterUserRequest) returns (RegisterUserResponse);
+	
+	rpc playGame(stream SnakeLadderRequest) returns (stream SnakeLadderResponse);
+}

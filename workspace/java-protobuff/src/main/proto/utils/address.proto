@@ -1,0 +1,17 @@
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.java_protobuff.beans";
+
+package utils;
+
+message Address{
+	string address1 = 1;
+	string address2 = 2;
+	string city = 3;
+	string state = 4;
+	string zipCode = 5;
+	string country = 6;
+}

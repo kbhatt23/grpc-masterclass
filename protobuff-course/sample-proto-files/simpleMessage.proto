@@ -1,0 +1,12 @@
+
+// Supports proto 3 version
+syntax = "proto3";
+
+package beans;
+
+
+message SimpleMessage{
+
+int32 id=1;
+string message=2;
+}

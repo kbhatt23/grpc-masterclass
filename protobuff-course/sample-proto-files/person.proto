@@ -1,0 +1,61 @@
+
+// Supports proto 3 version
+syntax "proto3";
+
+package beans;
+import "sample-proto-files/utils/address.proto";
+
+
+/* Person is used to represent
+* object of abstract person accorss multiple apis */
+message Person{
+
+//first name seperate
+ string first_name=1;
+ 
+ //last name seperate
+ string last_name=2;
+ 
+ int32 age=3;
+ 
+ //image in jpeg format
+ bytes image=4;
+ 
+ //height in cms
+ double height=5;
+ 
+ bool is_email_verified=6;
+ 
+ repeated string emails=7;
+ 
+ //can only be used within this prot file
+ //can not be imported and used in another proto file
+ enum NestedGender{
+ //if not set in serialzed object will not be null
+ //but will be default value as tagged in 0
+	UNKNOWN = 0;
+	MALE = 1;
+	FEMALE = 2;
+ }
+ 
+ //enumerated gender -> default to unkown
+ NestedGender gender=8;
+ 
+ //can not be used in a different proto file
+//can only be used in this message only , can not be imported into another .proto file 
+ message NestedAddress{
+ 
+	string address1=1;
+	string address2=2;
+	string state=3;
+	string city=4;
+	string zipcode=5;
+	string country=6;
+ }
+ 
+ //this can be used only within this .proto file
+ 
+ NestedAddress nestedAddress = 9;
+ 
+ Address address = 10;
+}

@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.spring_boot_grpc_client.simplemessage";
+
+message SimpleMessageRequest{
+	int32 number=1;
+}
+
+message SimpleMessageResponse{
+	int32 number=1;
+	int64 number_square=2;
+}
+
+service SimpleMessageService{
+	rpc squareNumber(SimpleMessageRequest) returns (SimpleMessageResponse);
+}

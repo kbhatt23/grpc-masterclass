@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.java_protobuff.beans";
+
+package utils;
+
+message Car{
+	string carNumber = 1;
+	string brand = 2;
+	int32 year = 3;
+	double price = 4;
+	//enum type
+	CarType carType = 5;
+}
+
+enum CarType{
+	UNKNOWN = 0;
+	SUV = 1;
+	SEDAN = 2;
+	COOPER = 3;
+}

@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package utils;
+
+option java_package="com.learning.java_grpc.basics";
+
+option java_multiple_files=true;
+
+
+message FindAverageRequest{
+	int32 number = 1;
+}
+
+message FindAverageResponse{
+	double average = 1;
+	repeated int32 numbers = 2;
+}
+
+message SquareRootResponse{
+	int32 number=1;
+	double square_root=2;
+}
+
+service CalculatorService{
+	rpc average(stream FindAverageRequest) returns (FindAverageResponse){};
+	
+	rpc SquareRoot(FindAverageRequest) returns (SquareRootResponse){};
+}

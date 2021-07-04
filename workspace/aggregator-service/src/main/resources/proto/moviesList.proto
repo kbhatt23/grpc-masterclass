@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+
+option java_package = "com.learning.aggregator_service.models";
+
+message MoviesListRequest{
+	string genre = 1;
+}
+
+message MoviesListResponse{
+	repeated Movie movies = 1;	
+}
+
+message Movie{
+	string genre = 1;
+	string name = 2;
+}
+
+service MoviesListService{
+	rpc findMoviesByGenre(MoviesListRequest) returns (MoviesListResponse);
+}
+

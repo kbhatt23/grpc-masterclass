@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.learning.protobuff_basics.beans";
+option java_multiple_files = true;
+
+import "utils/address.proto";
+
+message MapExample{
+	//never change tag of currently running property 
+	int32 id = 1;
+	
+	map<int32,utils.Address> addressMap = 2;
+}

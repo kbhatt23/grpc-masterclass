@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option java_package = "com.learning.protobuff_basics.beans";
+
+message OneOfExample{
+	int32 id = 1;
+	
+	//class will have 3 properties-> id name and fullname
+	//but out of naem and fullname he can set only one of them and other one will automaticlly set as empty/default value
+	oneof exampleOneOf{
+		string name = 2;
+		string full_name = 3; 
+		string middle_name=4;
+	}	
+}

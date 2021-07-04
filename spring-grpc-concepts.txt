@@ -1,0 +1,126 @@
+problems with existing system that gRPC tries to solve
+	areas around interservice communication in microservices architechture
+a. HTTP1 is blocking and each channel is very heavy to create and can not be reused
+	until reponse is recieved same channel can not be used for another request communication
+	if need another request to be called we need to have handshake to create the channel whihc is heavy so that paralelly 2 calls can be amde
+b. HTTP is statelss and hence header are very important but they can not be compressed as they are plain text in http
+c. serilazation and deserialization is needed so json to be passed for communication are very heavy as they are plain text
+d. HTTP can not enforce client contract for api and hence can cause issue while json is deserialized : no schema enforcement contract b/w client and server
+e. are you responsible for creating and managing client dsk for all languages -> cross paltform nature
+f. dev/infrastructure is responsible for managing things like load balancing, authentication,error handling etc
+
+grpc: google remote procedure called
+solves issues mentioned
+-> it looks like we are calling a method but actually we are calling another api
+
+http2 vs http1:
+a. asynchronous non blocking connection between client and server
+b. we can have multiple requst parallely even in sinlge connection as client do not wait for response from server
+c. json payload data is sent in binary whihc is lighter than plain text/json
+d. http headers are compresed and lighter than http1
+e. backpressure support
+
+benefits of gRPC:
+a. it uses http2 as inter communcation protocol
+b. adds protobuf: it enforces schema for payload(later moved to binary -> light weight and more secured) -> same like avro
+	it is  data transfimssion format like json
+	it is in binary format -> lighter payload
+	it is more secured
+	it enforces schema on json payload so less chance in deserialztion failure
+	it can help create client SDK for famous programming language on its own and save time
+	
+- We can generate java or javascript or other prgoramming language POJO whihc is auto serailzable and deserializble beans using same .proto file
+		we need to use proto plugin based on os and pass the list of .proto files and target programming language
+		
+- protobuff byte array is smaller than the size of jackson json byte array
+ thats why serialization and deserialzation takes lesser time and memmeory and good for passing over the network
+ how protobuff do it
+ -> jackson uses propertyname: propertyvalue as entry pair and converts to byte array
+  , however protobuff uses tag added for that specific property in .proto file (eg name=1 -> 1 is the tag)
+	so the char array size is less and hence byte array size will be lesser, 
+	 we can choose any tag and if same .proto file is used in different services it will work but we should choose weel planned tag in a way that the size of charachters is less
+	 thats why we choose tag from 1 in .proto file to reduce the overall chars size
+	 
+	 tag size : 1-15 uses 1 byt enad 16-2047 -> 2 bytes
+	 anyways protobuff do not pass null/empty values in serizlaed byte array so in case data will be present for those proeprties use 1-5 as tag
+	 and if less chance of data to be oresent use 16-2047 even though it takes 2 bytes but in moist cases when it is not present it wont even be passed in byte array
+	 
+ Types of GRPC:
+ a. unary : client sends the request to server , server compeltes the whle task and send single response back to client
+ b. server stream : client asks for data and sends request to server, instead of one response server sned stream of ordered responses to client	
+	similar to reactive streams , pass data in chunks so that client can have back pressure support
+c. client stream: multiple stream of ordered request is passed from client to server, but server collects them do the work and respond only once
+ eg: file uploiad , lets divide the files into smaller files and send upload request one after the other in ordered stream
+    server uploads them all and send back only single confirmation of all these stream of requests
+d. bidirectional stream:
+	here client send multiple requests and server do the things in multiple times and respond back to client multiple times in stream format
+	
+	
+- in http2 communcation/request/response between clinet and server happens via channels
+		channel is a persistent connectin between client and server, by default time is 30 mins but we can configure
+		-> using same channel client and servers communication is asynchronous and hence supports multiplexing
+- creating a new chnnel connection si bulky and hence during first grpc it is created and remain persistent for 30 mins
+			so that it can be reusable for other grpcs between same client and server
+- single channel from client side can handle multiple http connections and hence multiple req/res
+   it is also thread safe for example we cna share same channel among multiple async stub threads and it works fine
+- even if client create channel to manage one microservice stubs concurrnetly, it do not create the connection in connection pool   
+    only when first grpc is called it creates connevtion and keep it persistenec like a connectin pool for 30 mins(can be configured)
+	
+- in microservices we can have multiple instances of same microservice
+   so we can have same managed channel handling connections of all these instances and load balancing is needed
+- appriaches of load balancing
+a. server side load balancing,: easier in grpc as we know that channel in client should have a persistence connection(aka channel) and 
+    having multiple connection in same channel to amnage same group of microservice is not good
+  so in channel object of client we can store connection of load balance whihc have sngle ip , and other instances are abstracted to client
+  eg using nginx  
+  
+server side loadbalancing
+	- we will create a single connection between channel and ha proxy . ngin x acting as a load balancer
+	- easier to manager, for client it looks like a single server exist and all is taken care by load balancer
+	- in unary grpcs multiple request will require multiple stub method call nad hence tasks will get load balanced among multiple services
+	- in streaming client all the stream request will go to same microservice server as only single grpc is called,
+		this is good like use case of multpl small pdf should go to same server
+	   among multiple grpcs client stream it can divide the tasks to multpile servers ,
+
+client side loadbalancing
+- good in perfroamnce as there is a single request but tough to handle as now client should know about all the servers
+   plus now need to have logic on client side to do load balaning 
+- client should know all the ips of the server and since it can change we need a service registry
+ plus client shoould handle the logic of laod distribution
+- for this grpc allows sub channels
+   meaning one cahnnel will be connection to handle same micro service but within that we could have subchannels
+   each sub channel connecting to each instance of same micro service  
+   -  by default all request will go to same single instance untill that server dies and suddenly all request will start going to another instance
+   - we can do round robin distribtion where some request will go through one sub channel and other goes using other sub channel
+   
+---remmber by default client side load balancing using name resolvers uses simple sub cahnnel strategy -> called as pick first strategy
+meaning all request even in multiple grpcs goes to same server , we need to confgure round robin anually to divide server work
+
+- we will have cross cutting concenrs
+	meansing functionalities whihc will be common for all the services,
+	so we can move them in one single common place and that way it is will wasy to maintian
+	- single responssbility
+	- single reason to change either interceptor or main functuonalty class'
+	- easy to understand business functionality code
+	 
+- flow overall : 
+   client calls stub -> calls clietn interceptor -> calls server interceptor -> calls server rpc method
+ Data used 
+    call options --> read calloption-> metadata ---- -> read metadata -> context ----> reads context 
+	
+	MEtadata is a key value pair that can be used to send message as a header from client to server as wella s server to client
+	for eg: oauth tocken from client to server can be sent using interceptor and pushing key value in metadata
+	 server can access key value from metadata nd do the thing and even pass the value as key and value to context that can be used by rpc server code
+	 - Also metadata can be used as a custom error message data in error channel from server to client
+	 
+
+	
+- GRPC uses netty as server by default, netty server whihc is nonblocking and event loop driven server
+  - netty server have 2 * size of core as number of threads , very useful in non blocking apis
+  - however our grpc servie can be blocking and in that case if we use direct event loops/threads from netty for actuall service task execution it will be very bad in throughput
+ - so the worker event thread will push the task to a executor servie called grpc executors whihc have cachethread pool strategy by default
+ - this way we are concurrent, and with high throughput
+ - however if we have non blockking ocde in service/grpc service then we can directly use the netty even thread pools 
+ 
+ - we browsers do not have valid support of grpc completely so we must have a API gateway/proxy server that acts as  amiddleware between browser and grpc microservices
+  - however for inter service communiaction in microservices grpc is good enough to use without any proxy/interceptorapi gateway service
