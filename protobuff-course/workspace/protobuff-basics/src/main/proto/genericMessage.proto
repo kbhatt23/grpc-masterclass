@@ -1,0 +1,18 @@
+// Supports proto 3 version
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.learning.protobuff_basics.beans";
+
+import "google/protobuf/any.proto";
+
+
+message GenericMessageProto{
+
+//store any data
+ google.protobuf.Any any_data = 1;
+ 
+ //store class type
+ string type=2;
+ 
+}

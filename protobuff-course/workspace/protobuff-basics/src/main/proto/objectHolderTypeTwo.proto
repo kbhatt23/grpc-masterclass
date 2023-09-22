@@ -1,0 +1,15 @@
+// Supports proto 3 version
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.learning.protobuff_basics.beans";
+
+
+
+message ObjectHolderTypeTwo{
+
+//store any data
+int32 field1=1;
+ 
+ 
+}
