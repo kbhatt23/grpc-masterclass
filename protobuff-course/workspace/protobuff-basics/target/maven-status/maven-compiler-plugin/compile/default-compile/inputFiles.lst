@@ -5,6 +5,7 @@ C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\wor
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\MapExampleOuterClass.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\GenericMessageJSONVsProto.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\ObjectHolderTypeTwoOuterClass.java
+C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\Payload.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\TestMiltipleFileClass4.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\JsonVsProtoSimpleMessage.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\SimpleEmployeeBadTags.java
@@ -16,7 +17,9 @@ C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\wor
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\TestMiltipleFileClass1OrBuilder.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\PersonOuterClass.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\MapExampleTest.java
+C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\PayloadRequest.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\SimpleMessageOuterClass.java
+C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\PayLoadRequestSerdeDemo.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\App.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\GenericMessage.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\TestMiltipleFileClass2.java
@@ -26,6 +29,7 @@ C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\wor
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\OneOfExampleTest.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\SamplePersonBuild.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\TestMiltipleFileClass2OrBuilder.java
+C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\PayloadRequestOrBuilder.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\AddressOuterClass.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\TestMiltipleFileClass1.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\SelfSimpleMessage.java
@@ -38,6 +42,7 @@ C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\wor
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\TestMiltipleFileClass3.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\GenericMessageProto.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\EvolvableMessageOuterClass.java
+C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\PayloadRequestOuterClass.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\ObjectHolderTypeTwoOrBuilder.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\src\main\java\com\learning\protobuff_basics\serializers\MessageSerde.java
 C:\Kanishk\learning\spring-grpc\commitable\grpc-masterclass\protobuff-course\workspace\protobuff-basics\target\generated-sources\protobuf\java\com\learning\protobuff_basics\beans\OneOfExampleOuterClass.java

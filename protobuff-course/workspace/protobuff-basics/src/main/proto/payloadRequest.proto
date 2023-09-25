@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.learning.protobuff_basics.beans";
+
+package com.example.payload;
+
+message PayloadRequest {
+  string type = 1;
+  bytes data = 2;
+}
